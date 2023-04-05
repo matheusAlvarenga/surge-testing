@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 5
     env:
       URL: alvarenga-surge-testing-${{ github.event.number }}.surge.sh
+    permissions: 
+      pull-requests: write 
 
     steps:
       - name: Checkout repository
@@ -44,8 +46,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: Install surge
+        run: npm install -g surge
+
       - name: Build application
         run: pnpm build
 
       - name: Deploy to surge
         run: surge dist $URL --token ${{ secrets.SURGE_TOKEN }}
+      
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            Your preview URL is: https://${{ env.URL }}
