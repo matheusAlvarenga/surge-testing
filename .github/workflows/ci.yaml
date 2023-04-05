@@ -52,3 +52,9 @@ jobs:
 
       - name: Deploy to surge
         run: surge dist $URL --token ${{ secrets.SURGE_TOKEN }}
+      
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            Your preview URL is: $URL
