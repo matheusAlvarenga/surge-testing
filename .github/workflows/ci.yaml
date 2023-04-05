@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      URL: alvarenga-surge-testing-${{ github.event.number }}-${{ github.event.pull_request.head.sha }}.surge.sh
+      URL: alvarenga-surge-testing-${{ github.event.number }}.surge.sh
     permissions: 
       pull-requests: write 
 
@@ -59,4 +59,4 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            Your preview URL is: ${{ env.URL }}
+            Your preview URL is: https://${{ env.URL }}
