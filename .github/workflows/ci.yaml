@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     env:
-      URL: alvarenga-surge-testing-${{ github.event.number }}.surge.sh
+      URL: alvarenga-surge-testing-${{ github.event.number }}-${{ github.event.pull_request.head.sha }}.surge.sh
     permissions: 
       pull-requests: write 
 
